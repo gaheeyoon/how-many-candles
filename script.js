@@ -29,5 +29,6 @@ function calculate() {
 birthYearInput.addEventListener('input', calculate);
 birthYearInput.addEventListener('focus', () => birthYearInput.select());
 
-// Initialize footer year
+// Initialize
+birthYearInput.max = CURRENT_YEAR;
 document.getElementById('footerYear').textContent = CURRENT_YEAR;

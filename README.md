@@ -27,4 +27,4 @@
 
  
 ---
-© 2026 Made with 💖 for birthday celebrations.
+© Made with 💖 for birthday celebrations.
