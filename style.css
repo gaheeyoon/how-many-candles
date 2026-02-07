@@ -45,6 +45,11 @@ h1 {
   margin-bottom: 8px;
 }
 
+.emoji {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
 .tagline {
   color: var(--text-dim);
   font-size: 0.95rem;
