@@ -1,0 +1,142 @@
+/* ===== Variables ===== */
+:root {
+  --bg: #0f0f0f;
+  --card: #1a1a1a;
+  --accent: #ff6b35;
+  --text: #ffffff;
+  --text-dim: #888888;
+  --border: #333333;
+}
+
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Base ===== */
+body {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ===== Layout ===== */
+.container {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+header {
+  margin-bottom: 48px;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.tagline {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+/* ===== Input ===== */
+.input-group {
+  margin-bottom: 40px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+#birthYear {
+  width: 100%;
+  max-width: 200px;
+  padding: 16px 24px;
+  font-size: 1.5rem;
+  font-family: inherit;
+  font-weight: 600;
+  text-align: center;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#birthYear:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15);
+}
+
+#birthYear::placeholder {
+  color: var(--text-dim);
+}
+
+/* Hide number spinners */
+#birthYear::-webkit-inner-spin-button,
+#birthYear::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+/* ===== Result ===== */
+.result {
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.result.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.count {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.count span {
+  display: inline-block;
+  animation: pop 0.4s ease-out;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===== Footer ===== */
+footer {
+  margin-top: 48px;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  .count {
+    font-size: 3rem;
+  }
+}
