@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계산 방법 - How Many Candles?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .guide-content {
+      text-align: left;
+      line-height: 1.8;
+    }
+    .guide-content h2 {
+      margin: 40px 0 20px;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+    .guide-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    .guide-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .formula {
+      font-family: inherit;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      display: block;
+      margin: 10px 0;
+    }
+    .example-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .example-table td {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .example-table td:last-child {
+      text-align: right;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 40px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: var(--accent);
+    }
+    footer {
+      padding-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main-content">
+      <header>
+        <div class="emoji">🧮</div>
+        <h1>How it's Calculated</h1>
+        <p class="tagline">'몇 번째 생일'인지 계산하는 법을 알아볼까요?</p>
+      </header>
+
+      <main class="guide-content">
+        <h2>어떤 숫자를 말하나요?</h2>
+        <p>우리나라의 나이 셈법이 바뀌면서 '만 나이'와 '세는 나이'가 헷갈릴 수 있습니다. 하지만 생일 케이크에 꽂는 촛불이나 "Happy 30th Birthday!" 같은 표현은 보통 <strong>세상에 나온 뒤 생일이 몇 번 돌아왔는지</strong>를 의미합니다.</p>
+
+        <div class="guide-card">
+          <p style="text-align: center; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; color: var(--text-dim);">심플한 계산 공식</p>
+          <span class="formula"><span class="current-year"></span> − 태어난 연도 = 생일 횟수</span>
+        </div>
+
+        <h2>예시로 보기 (<span class="current-year"></span>년 기준)</h2>
+        <table class="example-table" id="exampleTable">
+          <!-- Will be filled by JS -->
+        </table>
+
+        <h2>만 나이와 무엇이 다른가요?</h2>
+        <p><strong>만 나이</strong>는 오늘의 날짜를 기준으로 합니다. 생일이 지나지 않았다면 나이가 한 살 적게 나오죠.</p>
+        <p>반면 <strong>생일 횟수</strong>는 날짜와 상관없이 그 해에 맞이하게 되는 생일이 총 몇 번째인지를 나타냅니다. 그래서 케이크 레터링이나 촛불 갯수는 이 숫자가 더 자연스럽습니다.</p>
+
+        <a href="index.html" class="back-link">← 계산기로 돌아가기</a>
+      </main>
+    </div>
+
+    <footer>
+      <p>🎂 <span id="footerYear"></span> 가히의 How Many Candles</p>
+    </footer>
+  </div>
+
+  <script>
+    const currentYear = new Date().getFullYear();
+    
+    // Update all year spans
+    document.querySelectorAll('.current-year').forEach(el => el.textContent = currentYear);
+    document.getElementById('footerYear').textContent = currentYear;
+
+    // Generate examples
+    const table = document.getElementById('exampleTable');
+    const examples = [
+      { year: 1990, label: '번째 생일' },
+      { year: 2000, label: '번째 생일' },
+      { year: currentYear - 1, label: '첫 번째 생일' },
+      { year: currentYear, label: '아직 0회 (첫 생일 전)' }
+    ];
+
+    examples.forEach(ex => {
+      const row = document.createElement('tr');
+      const diff = currentYear - ex.year;
+      const resultText = diff === 0 ? ex.label : `${diff}${ex.label}`;
+      
+      row.innerHTML = `
+        <td>${ex.year}년생</td>
+        <td>${currentYear} − ${ex.year}</td>
+        <td>${resultText}</td>
+      `;
+      table.appendChild(row);
+    });
+  </script>
+</body>
+</html>
